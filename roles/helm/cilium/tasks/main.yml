@@ -1,0 +1,27 @@
+---
+- name: add helm repository for celium
+  kubernetes.core.helm_repository:
+    name: cilium
+    repo_url: "{{ repository_path }}"
+
+- name: helm install cilium
+  kubernetes.core.helm:
+    name: "{{ chart.name }}"
+    chart_ref: "{{ chart.ref }}"
+    chart_version: "{{ chart.version }}"
+    release_namespace: "{{ release_namespace }}"
+    values:
+      k8sServiceHost: "{{ k8s.service_host }}"
+      k8sServicePort: "{{ k8s.service_port }}"
+      kubeProxyReplacement: "{{ k8s.kube_proxy_replacement }}"
+      ipam:
+        mode: "{{ ipam.mode }}"
+        operator:
+          clusterPoolIPv4PodCIDR: "{{ ipam.cluster_pool_ipv4_podcidr }}"
+          clusterPoolIPv4PodCIDRList: "{{ ipam.cluster_pool_ipv4_podcidrList }}"
+          clusterPoolIPv4MaskSize: "{{ ipam.cluster_pool_ivp4_masksize }}"
+      hubble:
+        relay:
+          enabled: "{{ hubble.relay }}"
+        ui:
+          enabled: "{{ hubble.ui }}"  

@@ -1,0 +1,8 @@
+---
+- name: reload sysctl 
+  command:
+    cmd: sysctl --system
+
+- name: Set containerd folder as default 
+  command: 
+    cmd: containerd config default>/etc/containerd/config.toml

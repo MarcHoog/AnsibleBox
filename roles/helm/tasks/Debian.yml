@@ -1,0 +1,25 @@
+- name: Install helm for debian based systems
+  block:
+    - name: add helm apt key
+      ansible.builtin.apt_key:
+        url: "{{ repository_key }}"
+
+    - name: apt install dependencies
+      ansible.builtin.apt:
+        name: "{{ apt_dependencies }}"
+        state: present
+
+    - name: Add helm respository
+      ansible.builtin.apt_repository:
+        repo: "{{ repository_path }}"
+
+    - name: Update aptitude cache
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: False
+        
+    - name: Install helm
+      ansible.builtin.apt:
+        name: helm
+        state: present
+  become: true

@@ -1,0 +1,15 @@
+---
+- name: Include OS-specific variables.
+  dir: defaults
+  include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: inlcude OS-specific tasks.
+  include_tasks: "{{ ansible_os_family }}.yml"
+
+
+- name: install helm diff plugin (For Ansible)
+  kubernetes.core.helm_plugin:
+    plugin_path: "{{ diff_plugin_path }}"
+    state: present
+    become: true

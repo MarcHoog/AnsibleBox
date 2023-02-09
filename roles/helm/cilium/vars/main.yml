@@ -1,0 +1,26 @@
+---
+# Git repository
+release_namespace: kube-system
+
+# Chart settings
+chart:
+  version: 1.11.5
+
+# Related to k8s cluster
+k8s:
+  service_host: 10.8.0.1
+  service_port: 6443
+  kube_proxy_replacement: strict
+
+
+# Related to ipam settings
+ipam:
+  mode: cluster_pool
+  cluster_pool_ipv4_podcidr: "172.16.0.0/12"
+  cluster_pool_ipv4_podcidrList: ["172.16.0.0/12"]
+  cluster_pool_ivp4_masksize: 24
+
+# Related to hubble settings
+hubble:
+  relay: true
+  ui: true

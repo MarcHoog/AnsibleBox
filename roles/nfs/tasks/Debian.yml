@@ -1,0 +1,12 @@
+---
+- name: Installing Packages
+  ansible.builtin.apt:
+    name: 
+      - nfs-kernel-server
+      - nfs-common
+    state: present
+    update_cache: true
+  register: apt_status
+  until: apt_status is success
+  delay: 6
+  retries: 10

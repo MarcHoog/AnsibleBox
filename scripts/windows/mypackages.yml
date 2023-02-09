@@ -1,0 +1,5 @@
+---
+  - name: install software that i really like test
+    hosts: all
+    tasks:
+      

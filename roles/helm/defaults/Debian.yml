@@ -1,0 +1,4 @@
+---
+apt_dependencies:
+  - apt-transport-https
+repository_path: deb https://baltocdn.com/helm/stable/debian/ all main
