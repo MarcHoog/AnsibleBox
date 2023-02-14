@@ -1,0 +1,9 @@
+---
+- name: Setup my Ansible operator for easier login and more consistency
+  hosts: all
+  become: true
+  tasks: 
+
+    - name: "Include operator"
+      include_role:
+        name: "operator"

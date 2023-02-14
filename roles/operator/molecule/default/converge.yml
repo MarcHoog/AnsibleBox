@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Update apt cache and install SSH (on Debian).
+      ansible.builtin.apt:
+        name: ssh
+        update_cache: true
+        cache_valid_time: 3600
+        state: present
+
+      when: ansible_os_family == 'Debian'
+
+    - name: "Include personal.operator"
+      include_role:
+        name: "personal.operator"

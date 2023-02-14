@@ -17,7 +17,7 @@ scenario:
   test_sequence:
     - lint
     - destroy
-    # - dependency
+    - dependency
     - syntax
     - create
     # - prepare
@@ -25,4 +25,3 @@ scenario:
     - idempotence
     # - side_effect
     - verify
-    - destroy
