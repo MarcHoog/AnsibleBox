@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include personal.rustdesk"
+      include_role:
+        name: "personal.rustdesk"

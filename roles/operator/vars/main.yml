@@ -1,2 +1,6 @@
 ---
-# vars file for operator
+packages:
+  - nano
+  - lshw
+  - qemu-guest-agent
+  

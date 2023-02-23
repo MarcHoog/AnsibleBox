@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include personal.minecraft"
+      include_role:
+        name: "personal.minecraft"

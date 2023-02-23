@@ -1,10 +1,9 @@
 ---
 - name: Setup my Ansible operator for easier login and more consistency
-  hosts: all
+  hosts: ansible-testing
   become: true
-  gather_facts: true
   tasks: 
 
-    - name: "Include operator"
+    - name: "Include role Containr.d"
       include_role:
-        name: "operator"
+        name: "containerd"

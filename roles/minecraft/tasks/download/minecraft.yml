@@ -1,0 +1,7 @@
+- name: download Minecraft server
+  get_url:
+    url: "{{ minecraft_url }}"
+    dest: "{{ minecraft_home }}/minecraft_server.{{ minecraft_server }}.jar"
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    mode: '0755'

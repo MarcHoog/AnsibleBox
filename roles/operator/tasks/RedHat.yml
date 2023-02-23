@@ -1,0 +1,14 @@
+---
+  - name: debug
+    debug:
+      msg: Welcome in the Redhat Tasks File
+
+  - name: update all packages to latest
+    ansible.builtin.yum:
+      name: "*"
+      state: latest
+
+  - name: install packages using Yum
+    ansible.builtin.yum:
+      name: "{{ packages }}"
+      state: latest

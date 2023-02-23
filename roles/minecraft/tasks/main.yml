@@ -1,0 +1,22 @@
+---
+# tasks file for minecraft
+- name: include OS-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+
+- name: create Minecraft group
+  group:
+    state: present
+    name: "{{ minecraft_group }}"
+    system: yes
+
+- name: create Minecraft user
+  user:
+    state: present
+    name: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    home: "{{ minecraft_home }}"
+
+- include: systemd.yml
