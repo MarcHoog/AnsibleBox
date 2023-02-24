@@ -1,11 +1,4 @@
 ---
-# tasks file for minecraft
-- name: include OS-specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family }}.yml"
-
 - name: create Minecraft group
   group:
     state: present
@@ -17,6 +10,38 @@
     state: present
     name: "{{ minecraft_user }}"
     group: "{{ minecraft_group }}"
-    home: "{{ minecraft_home }}"
+    home: "{{ minecraft_server_directory }}"
 
-- include: systemd.yml
+- name: download Minecraft server
+  get_url:
+    url: "{{ minecraft_url }}"
+    dest: "{{ minecraft_home }}/{{ minecraft_server_name }}.jar"
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_group }}"
+    mode: '0755'
+
+- name: create minecraft server properties
+  template:
+    src: "minecraft.service.j2"
+    destination: "{{minecraft_home}}/server.properties"
+    user: 
+    group: root
+    mode: '0644'
+  notify:
+    - restart_minecraft
+
+- name: create systemd service from template
+  template:
+    src: "minecraft.service.j2"
+    destination: "/etc/systemd/system/{{ minecraft_server_name }}.service"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart_minecraft
+  register: systemd_service_config
+
+- name: reload systemd
+  command: systemctl daemon-reload
+  become: true
+  when: systemd_service_config.changed

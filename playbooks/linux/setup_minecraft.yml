@@ -1,0 +1,11 @@
+---
+- name: Setup my Ansible operator for easier login and more consistency
+  hosts: minecraft-node
+  become: true
+  gather_facts: true
+  tasks: 
+
+    
+    - name: "Include Minecraft"
+      include_role:
+        name: "operator"

@@ -1,11 +1,11 @@
 ---
-# handlers file for minecraft
 - name: enable service (systemd)
   service:
-    name: "{{ item }}"
+    name: "{{ minecraft_server_name }}.service"
     state: started
     enabled: true
-  with_items:
-    - "{{ minecraft_service_name }}.service"
-    - "{{ minecraft_service_name }}.socket"
-  when: minecraft_process_control == 'systemd'
+
+- name: restarting the minecraft server
+  service:
+    name: "{{ minecraft_server_name }}.service"
+    state: restarted

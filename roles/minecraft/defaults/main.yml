@@ -1,11 +1,10 @@
 ---
-minecraft_server: minecraft
+minecraft_server_name: test123
 minecraft_version: latest
-minecraft_url: https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar
-minecraft_user: "{{ minecraft_server }}"
-minecraft_group: "{{ minecraft_server }}"
-minecraft_home: /srv/{{ minecraft_server }}
+minecraft_url: https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/420/downloads/paper-1.19.3-420.jar
+minecraft_user: sys-craft
+minecraft_group: sys-craft
+minecraft_home: /srv/minecraft/{{ minecraft_server_name }}
 minecraft_max_memory: 1024M
 minecraft_initial_memory: 1024M
-minecraft_service_name: "{{ minecraft_server }}"
-minecraft_supervisor_name: "{{ minecraft_service_name }}"
+eula: true
