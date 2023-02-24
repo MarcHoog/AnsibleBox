@@ -12,6 +12,16 @@
     group: "{{ minecraft_group }}"
     home: "{{ minecraft_server_directory }}"
 
+- name: Install required package
+  ansible.builtin.apt: 
+    name: "{{ packages }}"
+    state: present
+  register: apt_status
+  until: apt_status is success
+  delay: 6
+  retries: 10
+
+
 - name: download Minecraft server
   get_url:
     url: "{{ minecraft_url }}"

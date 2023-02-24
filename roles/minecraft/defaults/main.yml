@@ -8,3 +8,6 @@ minecraft_home: /srv/minecraft/{{ minecraft_server_name }}
 minecraft_max_memory: 1024M
 minecraft_initial_memory: 1024M
 eula: true
+
+packages:
+  - openjdk-17-jre-headless
